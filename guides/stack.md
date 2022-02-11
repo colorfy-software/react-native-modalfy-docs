@@ -4,100 +4,125 @@ title: Creating a stack
 
 # Creating a stack
 
-You'll need to use 2 things to get up and running with React Native Modalfy. First, `ModalProvider`, which is going to wrap your whole application in order to be able to display your modals on top of everything. Then we have `createModalStack`, we'll use to create the stack `ModalProvider` needs to work as expected.
+We'll need to use 2 things to get you up and running with React Native Modalfy:
 
-## Setup the provider
+**1.**`<ModalProvider>`, which is going to wrap the whole application and use React Context in order to display the modals on top of everything.&#x20;
 
-Simply find your app root's component and put its current content inside `ModalProvider` as so:
+**2.** `createModalStack()`, that we'll use to create the stack `<ModalProvider>` needs to work as expected.
 
+## Setting up the provider <a href="#provider" id="provider"></a>
+
+#### [> ModalProvider API](../api/modalprovider.md)
+
+Find the app root's component and put its current content inside `<ModalProvider>` as so:
+
+{% tabs %}
+{% tab title="React JSX" %}
+{% code title="./App.js" %}
 ```javascript
-// App.js in a new react native project
-
 import React from 'react'
 import { Text, View } from 'react-native'
 import { ModalProvider } from 'react-native-modalfy'
 
-class App extends React.Component {
-  render() {
-    return (
-      <ModalProvider>
-        <Text>Welcome to React Native!</Text>
-        <Text>To get started, edit App.js</Text>
-      </ModalProvider>
-    )
-  }
-}
+const App = () => (
+  <ModalProvider>
+    <Text>Welcome to React Native!</Text>
+    <Text>To get started, edit App.js</Text>
+  </ModalProvider>
+)
 
 export default App
+
 ```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
-You can be working on a more complex application with a lot of providers already. No worries to have here: React Native Modalfy can work wherever you put it in your app root component's `render` function:
+You can be working on a more complex application with a lot of providers already. No worries to have here: React Native Modalfy can work wherever we render it in the app root component:
 
+{% tabs %}
+{% tab title="React JSX" %}
+{% code title="./App.js" %}
 ```javascript
-// Existing project's root component
-
 import React from 'react'
-import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
+import { ApolloProvider } from 'react-apollo'
 import { ModalProvider } from 'react-native-modalfy'
 
-import Navigation from '@navigation'
-import reduxStore from '@redux'
-import { client } from '@graphql'
+import Navigation from './navigation'
+import reduxStore from './redux'
+import client from './graphql'
 
-class App extends React.Component {
-  render() {
-    return (
-      <ApolloProvider client={client}>
-        <Provider store={reduxStore}>
-          <ModalProvider>
-            <Navigation />
-          </ModalProvider>
-        </Provider>
-      </ApolloProvider>
-    )
-  }
-}
+const App = () => (
+  <ApolloProvider client={client}>
+    <Provider store={reduxStore}>
+      <ModalProvider>
+        <Navigation />
+      </ModalProvider>
+    </Provider>
+  </ApolloProvider>
+)
 
 export default App
 ```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
-If you run the previous examples, you'd get a crash from the library. That's because `ModalProvider` is missing a stack of modals: let's fix that.
+{% hint style="info" %}
+You'll notice that we put `<ModalProvider>` inside of `<ApolloProvider>` and Redux's `<Provider>` just in case modal components might need data from them.
+{% endhint %}
 
-## Create the stack
+If we run the previous examples, we'd get an error from the library. That's because `<ModalProvider>` is missing a stack of modals: let's fix that!
 
-For this step we'll use `createModalStack` and pass its output to `ModalProvider` through the only prop the component accepts: `stack`. You can pass 2 arguments to `createModalStack`: **a modal configuration object** \(mandatory\) and the **default options object** \(optional\):
+## Configuring the stack <a href="#configuring" id="configuring"></a>
 
+#### [> createModalStack() API](../api/createmodalstack.md)
+
+For this step, we'll use `createModalStack()` and pass its output to `<ModalProvider>` through the only prop the component accepts: `stack`. `createModalStack()` accepts 2 arguments: **a modal configuration object** (mandatory) and **a** **default options object** (optional):
+
+{% tabs %}
+{% tab title="React JSX" %}
+{% code title="./App.js" %}
 ```javascript
 import React from 'react'
-import { ModalProvider } from 'react-native-modalfy'
+import { ModalProvider, createModalStack } from 'react-native-modalfy'
 
-import Navigation from '@navigation'
-import { ErrorModal } from '@components/Modals'
+import Navigation from './navigation'
+import { ErrorModal } from './components/Modals'
 
 const modalConfig = { ErrorModal }
 const defaultOptions = { backdropOpacity: 0.6 }
 
 const stack = createModalStack(modalConfig, defaultOptions)
 
-class App extends React.Component {
-  render() {
-    return (
-      <ModalProvider stack={stack}>
-        <Navigation />
-      </ModalProvider>
-    )
-  }
-}
+const App = () => (
+  <ModalProvider stack={stack}>
+    <Navigation />
+  </ModalProvider>
+)
+
 
 export default App
 ```
-
-In this example, `ErrorModal` is a regular React component we're using as our 1st modal. React Native Modalfy will register it under the key `'ErrorModal'`. Given we're working with normal JavaScript objects here, you can change that key by simply changing the `modalConfig` key, ie: `const modalConfig = { MyCustomErrorModalName: ErrorModal }`.
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
-We only covered the simplest way of setting up your modal stack here. Feel free to check out the [createModalStack](https://github.com/colorfy-software/react-native-modalfy-website/tree/ba1aacf00d590bad4c078b8a776e82da019b2201/guides/create-modal-stack.md) API reference to have more in-depth explanations of `createModalStack` mechanics.
+There are 3 ways to provide options to a modal:
+
+1. Trough `defaultOptions` in `createModalStack()`as we just did
+2. Inside `modalConfig` by passing an [**modalOptions**](../api/types/modaloptions.md) object instead of just the component directly
+3. Inside the modal component file itself, via `static modalOptions` (Class) or `MyModalComponent.modalOptions`(Hooks)
 {% endhint %}
 
-From here you'll finally have a fully functional modal system, ready to be used and we'll see how in the following section.
+In this example, `<ErrorModal>` is a regular React component we're using as our 1st modal. React Native Modalfy will register it under the key `'ErrorModal'`.&#x20;
 
+Given that we're working with normal JavaScript objects here, you can change that key by simply changing the `modalConfig` key, ie: `const modalConfig = { MyCustomErrorModalName: ErrorModal }`.
+
+{% hint style="info" %}
+We only covered the simplest way of setting up a modal stack here. Feel free to check out the [**createModalStack()**](../api/createmodalstack.md) API reference to have more in-depth explanations of `createModalStack()` mechanics.
+{% endhint %}
+
+We now have a fully functional modal system, ready to be used and we'll see how in the following section.

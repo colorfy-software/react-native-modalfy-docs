@@ -1,40 +1,46 @@
 # useModal
 
-Same as [`withModal`](with-modal.md) , `useModal` gives you access to the `modal` prop outside of a modal component. You'll use it if you want to take benefits or React's new hotness: [hooks](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html)!
-
-## API reference
-
-```javascript
-import React, { Component } from 'react'
-import { Button, Text } from 'react-native'
-import { useModal } from 'react-native-modalfy'
-
-const ProfileScreen = () => {
-  const { openModal } = useModal()
-  return (
-    <View>
-      <Text>Welcome!</Text>
-      <Button
-        title="Edit"
-        onPress={() => openModal('EditProfile')}
-      />
-    </View>
-  )
-}
-
-export default ProfileScreen
-```
-
-Using `useModal` will give you access to an object containing:
-
-* `currentModal`: name of the current displayed modal if there's one
-* `openModal`: open a specific modal
-* `closeModal`: close a modal
-* `getParams`: get a specific modal params with fallback
-
-as seen in [Modal prop](modal-prop.md#api-reference).
-
 {% hint style="info" %}
-Note: Hooks require React 16.8.0+ which means you'll need to be on React Native 0.59.0+ for `useModal`.
+Hooks that exposes Modalfy's API.
 {% endhint %}
 
+{% hint style="danger" %}
+**Note:** Prefer [**withModal()**](withmodal.md) HOC if you're using a Class component.
+{% endhint %}
+
+{% hint style="success" %}
+The object returned by `useModal()`is covered in [**ModalProp**](types/modalprop.md).
+{% endhint %}
+
+{% tabs %}
+{% tab title="TypeScript" %}
+```javascript
+const useModal = <P extends ModalfyParams>(): UsableModalProp<P> => {
+  const context: UsableModalProp<P> = React.useContext(ModalContext)
+  return {
+    closeAllModals: context.closeAllModals,
+
+    closeModal: context.closeModal,
+
+    closeModals: context.closeModals,
+
+    currentModal: context.currentModal,
+
+    openModal: context.openModal,
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/master/lib/useModal.ts" %}
+
+{% hint style="info" %}
+If you're using TypeScript and have [your params types](../guides/typing.md#modalprop), you can get some nice autocomplete by utilising `useModal()`like this:
+
+```javascript
+import { ModalStackParamsList } from 'App'
+// ...
+const { openModal } = useModal<ModalStackParamsList>()
+```
+{% endhint %}

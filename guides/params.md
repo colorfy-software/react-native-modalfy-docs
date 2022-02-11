@@ -4,34 +4,103 @@ title: Passing params
 
 # Passing params
 
-Thanks to React, we can reuse the same component over and over again. You might want to do the same thing with your modals: calling different modals, but rendering the same React component under the hood. Being able to know in which context that component was called is a major key to success, hence the `params`!
+#### [> ModalProp API](../api/types/modalprop.md)
+
+#### [**> ModalComponentProp API**](../api/types/modalcomponentprop.md)
+
+One of the reason we love React so much is how easy it is to reuse the same component wherever it makes sense. We might want to do something similar here: calling different modals, but rendering the same React component under the hood. Being able to change the content depending on which context that modal was called from is a major key to success, hence the need for `params`!
 
 They are a two-step-use tool:
 
-1. Passing params to a modal by putting them in an object as `modal.openModal` second parameter: `openModal('Error', { /* put params here */})`
-2. Accessing the params in your modal component: `modal.params`.
+1. We pass params to a modal by putting them as `openModal()` second argument, ie: `openModal('ErrorModal', { message: 'No Internet connection' })`
+2. We access the params in the modal component through `modal.params`.
 
+{% tabs %}
+{% tab title="Step 1" %}
+{% code title="./screens/Login.js" %}
+```javascript
+import React from 'react'
+import { Button, Text, View } from 'react-native'
+import { useModal } from 'react-native-modalfy'
+
+const Login = () => {
+  const { openModal } = useModal()
+  const onPressLogin = () =>
+    openModal('ErrorModal', { message: "No Internet connection" })
+
+  return (
+    <View>
+      <Text>Welcome!</Text>
+      <Button onPress={onPressLogin} title="Login" />
+    </View>
+  )
+}
+
+export default Login
+
+```
+{% endcode %}
+{% endtab %}
+
+{% tab title="Step 2" %}
+{% code title="./modals/ErrorModal.js" %}
+```jsx
+import React from 'react'
+import { Button, Text, View } from 'react-native'
+
+const ErrorModal = ({ modal: { closeModal, params } }) => (
+  <View>
+    <Text>An error occured!</Text>
+    <Text>{params.message}</Text>
+    <Button onPress={closeModal} title="OK" />
+  </View>
+)
+
+export default ErrorModal
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
+
+Now with Modalfy v2, you can even have granular access to your params if you used an object as `params` (which you should by default) and even provide a default value:
+
+{% tabs %}
+{% tab title="React JSX" %}
+{% code title="./modals/ErrorModal.js" %}
 ```javascript
 import React from 'react'
 import { Button, Text, View } from 'react-native'
 
-class ErrorModal extends React.Component {
-  render() {
-    const { modal: { closeModal, params } } = this.props
-    return (
-      <View>
-        <Text>An error occured!</Text>
-        <Text>{params.errorMessage}</Text>
-        <Button onPress={closeModal} title="OK" />
-      </View>
-    )
-  }
+const TITLES = {
+  login: 'We could not log you in',
+  signup: 'We could not create your account',
+  unknown: 'An error has occurred!',
+}
+
+const ErrorModal = ({ modal: { closeModal, getParam } }) => {
+  // We didn't pass any `origin` key to our params
+  // so `'unknown'` will be used by default 
+  const origin = getParam('origin', 'unknown')
+  const message = getParam('message', 'Something went wrong... 🤔')
+
+  return (
+    <View>
+      {/* 'An error has occurred!' */}
+      <Text>{TITLES[origin]}</Text>
+      {/* 'No Internet connection' */}
+      <Text>{message}</Text>
+      <Button onPress={closeModal} title="OK" />
+    </View>
+  )
 }
 
 export default ErrorModal
+
 ```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
-You also have access to `modal.getParams` you can use as so: `modal.getParams(modalName, defaultValue)`, with the `defaultValue` being optional. However, you'll mainly use `params` given that you have it at your disposal directly inside your component props.
-
-`modal.getParams` is mainly meant to be used inside a component you enhanced via `withModal`/ `useModal`, so that you could have access to a modal params outside of its component.
-
+{% hint style="info" %}
+Checkout the [**ModalComponentProp**](../api/types/modalcomponentprop.md) API reference to learn more about `getParam().`
+{% endhint %}
