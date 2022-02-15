@@ -14,4 +14,4 @@ interface ModalStackConfig {
 {% endtab %}
 {% endtabs %}
 
-{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/master/types.ts#L200" %}
+{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L182-L190" %}

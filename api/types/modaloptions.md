@@ -20,6 +20,7 @@ export interface ModalOptions {
   animationIn?: (
     animatedValue: Animated.Value,
     toValue: number,
+    callback?: () => void,
   ) => Animated.CompositeAnimation | void
   
   animateOutConfig?: Pick<Animated.TimingAnimationConfig, 'duration' | 'easing'>
@@ -27,6 +28,7 @@ export interface ModalOptions {
   animationOut?: (
     animatedValue: Animated.Value,
     toValue: number,
+    callback: () => void,
   ) => Animated.CompositeAnimation | void
   
   backBehavior?: 'clear' | 'pop' | 'none'
@@ -63,12 +65,11 @@ export type ModalTransitionValue =
   | string
   | number
   | undefined
-  | null
 ```
 {% endtab %}
 {% endtabs %}
 
-{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/master/types.ts#L210" %}
+{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L192-L352" %}
 
 ## API reference
 
@@ -90,10 +91,15 @@ Animation configuration used to animate a modal in, at the top of the stack. It 
 animationIn?: (
   animatedValue: Animated.Value,
   toValue: number,
+  callback?: () => void,
 ) => Animated.CompositeAnimation | void
 ```
 
 Function that receives the `animatedValue` used by the library to animate the modal opening, and a `toValue` argument representing the modal position in the stack. Useful to implement your own animation [type](https://reactnative.dev/docs/animated#configuring-animations) and/or [composition](https://reactnative.dev/docs/animated#composing-animations) functions.
+
+{% hint style="info" %}
+Since Modalfy v3, the function receives a `callback` argument, which _can_ be called when the animation is finished, depending on whether or not you'll have a callback in a `openModal()`.
+{% endhint %}
 
 **Note:** If you just want to use `Animated.timing()`, check `animateInConfig`.
 
@@ -102,7 +108,7 @@ Function that receives the `animatedValue` used by the library to animate the mo
 **Example:**
 
 ```typescript
-animationIn: (modalAnimatedValue, modalToValue) => {
+animationIn: (modalAnimatedValue, modalToValue, callback) => {
   Animated.parallel([
     Animated.timing(modalAnimatedValue, {
       toValue: modalToValue,
@@ -116,7 +122,9 @@ animationIn: (modalAnimatedValue, modalToValue) => {
       easing: Easing.inOut(Easing.exp),
       useNativeDriver: true,
     }),
-  ]).start()
+  ]).start(({ finished }) => {
+    if (finished) callback?()
+  })
 }
 ```
 
@@ -138,10 +146,15 @@ Animation configuration used to animate a modal out (underneath other modals or 
 animationOut?: (
   animatedValue: Animated.Value,
   toValue: number,
+  callback: () => void,
 ) => Animated.CompositeAnimation | void
 ```
 
 Function that receives the `animatedValue` used by the library to animate the modal closing, and a `toValue` argument representing the modal position in the stack. Useful to implement your own animation [type](https://reactnative.dev/docs/animated#configuring-animations) and/or [composition](https://reactnative.dev/docs/animated#composing-animations) functions.
+
+{% hint style="danger" %}
+<mark style="color:red;">Since Modalfy v3, the function receives a</mark><mark style="color:red;">`callback`</mark> <mark style="color:red;"></mark><mark style="color:red;">argument, which</mark> <mark style="color:red;"></mark>_<mark style="color:red;">**must**</mark>_ <mark style="color:red;"></mark><mark style="color:red;">be called when the animation is finished.</mark>
+{% endhint %}
 
 **Note:** If you just want to use `Animated.timing()`, check `animateOutConfig`.
 
@@ -150,7 +163,7 @@ Function that receives the `animatedValue` used by the library to animate the mo
 **Example:**
 
 ```typescript
-animationOut: (modalAnimatedValue, modalToValue) => {
+animationOut: (modalAnimatedValue, modalToValue, callback) => {
   Animated.parallel([
     Animated.timing(modalAnimatedValue, {
       toValue: modalToValue,
@@ -164,7 +177,9 @@ animationOut: (modalAnimatedValue, modalToValue) => {
       easing: Easing.inOut(Easing.exp),
       useNativeDriver: true,
     }),
-  ]).start()
+  ]).start(({ finished }) => {
+    if (finished) callback()
+  })
 }
 ```
 
@@ -259,7 +274,7 @@ transitionOptions?: ModalTransitionOptions
 **Notes:**&#x20;
 
 * Whenever you interpolate `animatedValue`, **the `inputRange` corresponds to the modal position in your stack**! `0` will translate to _"the modal is not rendered"_, `1` to _"this modal is on top of the stack/the only item in the stack"_, `2` to _"this modal is the 2nd item in the stack"_, etc.
-* The last entry of `inputRange` will define how all the modals positioned  at that index or more should animate. In the following example, any modal positioned 4th or more in the stack will have an opacity of `0`:
+* The last entry of `inputRange` will define how all the modals positioned at that index or more should animate. In the following example, any modal positioned 4th or more in the stack will have an opacity of `0`:
 
 ```typescript
 opacity: animatedValue.interpolate({

@@ -22,55 +22,74 @@ interface UsableModalProp<
     symbol | number
   >
 > {
-  closeAllModals: () => void
+  closeAllModals: (callback?: () => void) => void
   
-  closeModal: (modalName?: M) => void
+  closeModal: (modalName?: M, callback?: () => void) => void
     
-  closeModals: (modalName: M) => boolean
+  closeModals: (modalName: M, callback?: () => void) => boolean
   
   currentModal: M | null
   
-  openModal: (modalName: M, params?: P[M]) => void
+  openModal: (modalName: M, params?: P[M], callback?: () => void) => void
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/master/types.ts#L310" %}
-Types have been simplified for the sake of clarity. Refer to the exact definitions here.
-{% endembed %}
+{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L354-L373" %}
 
 ## API reference
 
 ### `closeAllModals`&#x20;
 
 ```javascript
-closeAllModals: () => void
+closeAllModals: (callback?: () => void) => void
 ```
 
 This function closes every open modal.
 
 **Example:** `modal.closeAllModals()`
 
+```
+modalfy().closeAllModals()
+
+modalfy().closeAllModals(() => console.log('All modals closed'))
+```
+
 ### `closeModal`&#x20;
 
 ```javascript
-closeModal: (modalName?: M) => void
+closeModal: (modalName?: M, callback?: () => void) => void
 ```
 
 This function closes the currently displayed modal by default. Incidentally, you can also provide a `modalName` if you want to close a different modal than the latest opened.
 
-**Example:** `modal.closeModal()`
+**Examples:**&#x20;
+
+```
+modalfy().closeModal()
+
+modalfy().closeModal('UserModal', () => console.log('Latest UserModal modal closed'))
+
+modalfy().closeModal(undefined, () => console.log('Latest modal closed'))
+```
 
 ### `closeModals`&#x20;
 
 ```javascript
-closeModals: (modalName: M) => boolean
+closeModals: (modalName: M, callback?: () => void) => boolean
 ```
 
 This function closes all the instances of a given modal. You can use it whenever you have the same modal opened several times, to close all of them at once.
 
-**Example:** `modal.closeModals('ErrorModal')`
+**Example:**&#x20;
+
+```
+modalfy().closeModals(
+  'ErrorModal', 
+  () => console.log('All ErrorModal modals closed')
+)
+```
 
 **Returns:** boolean indicating whether or not Modalfy found any open modal corresponding to the provided `modalName` (and then closed them).
 
@@ -87,9 +106,17 @@ This value returns the current open modal (`null` if none).
 ### `openModal`&#x20;
 
 ```typescript
-openModal: (modalName: M, params?: P[M]) => void
+openModal: (modalName: M, params?: P[M], callback?: () => void) => void
 ```
 
 This function opens a modal based on the provided `modalName`. It will look at the stack passed to `<ModalProvider>` and add the corresponding component to the current stack of open modals. Alternatively, you can also provide some `params` that will be accessible to that component.
 
-**Example:** `modal.openModal('PokedexEntryModal', { id: 619, name: 'Lin-Fu' })`
+**Example:**&#x20;
+
+```
+modalfy().openModal(
+  'PokedexEntryModal', 
+  { id: 619, name: 'Lin-Fu' },
+  () => console.log('PokédexEntryModal modal opened'),
+)
+```

@@ -46,9 +46,7 @@ type ModalEventListener = { remove: () => boolean }
 {% endtab %}
 {% endtabs %}
 
-{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/master/types.ts#L332" %}
-Types have been simplified for the sake of clarity. Refer to the exact definitions here.
-{% endembed %}
+{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L375-L395" %}
 
 ## API reference
 

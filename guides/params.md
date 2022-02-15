@@ -8,11 +8,11 @@ title: Passing params
 
 #### [**> ModalComponentProp API**](../api/types/modalcomponentprop.md)
 
-One of the reason we love React so much is how easy it is to reuse the same component wherever it makes sense. We might want to do something similar here: calling different modals, but rendering the same React component under the hood. Being able to change the content depending on which context that modal was called from is a major key to success, hence the need for `params`!
+One of the reasons we love React so much is how easy it is to reuse the same component wherever it makes sense. We might want to do something similar here: calling different modals, but rendering the same React component under the hood. Being able to change the content depending on which context that modal was called from is a major key to success, hence the need for `params`!
 
 They are a two-step-use tool:
 
-1. We pass params to a modal by putting them as `openModal()` second argument, ie: `openModal('ErrorModal', { message: 'No Internet connection' })`
+1. We pass params to a modal by putting them as [**`openModal()`**](../api/types/modalprop.md#openmodal) second argument, ie: `openModal('ErrorModal', { message: 'No Internet connection' })`
 2. We access the params in the modal component through `modal.params`.
 
 {% tabs %}
@@ -62,7 +62,7 @@ export default ErrorModal
 {% endtab %}
 {% endtabs %}
 
-Now with Modalfy v2, you can even have granular access to your params if you used an object as `params` (which you should by default) and even provide a default value:
+Since Modalfy v2, you can even have granular access to your params if you used an object as `params` (which you should by default) and even provide a default value:
 
 {% tabs %}
 {% tab title="React JSX" %}
@@ -102,5 +102,5 @@ export default ErrorModal
 {% endtabs %}
 
 {% hint style="info" %}
-Checkout the [**ModalComponentProp**](../api/types/modalcomponentprop.md) API reference to learn more about `getParam().`
+Checkout the [**`ModalComponentProp`**](../api/types/modalcomponentprop.md) API reference to learn more about `getParam().`
 {% endhint %}

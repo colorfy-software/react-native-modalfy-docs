@@ -32,5 +32,5 @@ Given that React Native Modalfy uses the new React Context & Hooks APIs added re
 
 If you want to experience the library by yourself and then come back afterwards, there is a demo app [available on Expo](https://snack.expo.io/@charles.m/react-native-modalfy)!
 
-![](<.gitbook/assets/Screenshot 2020-05-13 at 12.21.45.png>)
+![Scan it with the Expo Go app](.gitbook/assets/screenshot-2020-05-13-at-12.21.45.png)
 

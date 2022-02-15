@@ -1,7 +1,7 @@
 # createModalStack
 
 {% hint style="info" %}
-`createModalStack()` is the function that's going to turn your configuration into a usable modal stack.
+**`createModalStack()`** is the function that's going to turn your configuration into a usable modal stack.
 {% endhint %}
 
 {% tabs %}
@@ -15,13 +15,13 @@ const createModalStack = (
 {% endtab %}
 {% endtabs %}
 
-{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/master/lib/createModalStack.ts" %}
+{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/lib/createModalStack.ts" %}
 
-**Argument:** [`ModalStackConfig`](types/modalstackconfig.md) _config_ - Modal stack configuration.
+**Argument:** [**`ModalStackConfig`**](types/modalstackconfig.md) _`config`_ - Modal stack configuration.
 
-**Argument:** [`ModalOptions`](types/modaloptions.md) _customDefaultOptions_ - Configuration options to apply to all modals by default (optional).
+**Argument:** [**`ModalOptions`**](types/modaloptions.md) _`customDefaultOptions`_ - Configuration options to apply to all modals by default (optional).
 
-**Returns:** Modal stack configuration object to provide to [`<ModalProvider>`](modalprovider.md)'s `stack` prop.
+**Returns:** Modal stack configuration object to provide to [**`<ModalProvider/>`**](modalprovider.md)'s `stack` prop.
 
 **Example:**
 

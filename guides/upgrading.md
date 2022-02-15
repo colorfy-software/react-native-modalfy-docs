@@ -1,38 +1,70 @@
-# Upgrading from v1.x
+# Upgrading from v2.x
 
-We tried to keep the breaking changes as minimal as possible. As of now, here is the list of the changes we know you'll have to make if you're coming from Modalfy v1:
+We tried to keep the number of breaking changes as low as possible. As of now, here is the list of the changes we know you'll have to make if you're coming from Modalfy v2.
 
-## API
-
-### modal.getParams() ➜ modal.getParam()
-
-We drop the support for the generic `getParams(defaultValue)` in favour of `getParam(paramName, defaultValue)` which gives us a much more fine-grained control. &#x20;
-
-`getParams()` was returning the whole `params` variable or the `defaultValue` if we didn't provide any params to the modal. `getParam()` in the other hand allows us to access every single `params` key independently (granting `params` is an object), and `defaultValue` now applies to that specific key, instead of the whole `params` object.&#x20;
-
-### backButtonBehavior ➜ backBehavior
-
-This change applies wherever we were defining this key inside `modalOptions` object. We dropped the `Button` part as pressing the backdrop now supports `backBehavior`.
-
-## Types
-
-### Flow ➜ TypeScript
-
-The library has been completely rewritten from Flow to TypeScript. We deciced to drop support for the former to only pursue with the latter. If you feel like Flow support is essential to you, feel free to submit a PR with updated [Flow definitions](https://github.com/flow-typed/flow-typed)!
-
-### ModalStackOptions ➜ ModalOptions
-
-Given that this type isn't only used when creating the stack, it didn't make sense to include it in the name.
-
-### ModalStackItemProp ➜ ModalComponentProp
-
-If you were already using the TypeScript definition files, `ModalStackItemProp` used in the modal components files has been replaced by `ModalComponentProp`. Check out its updated section in the [**TypeScript guide**](typing.md#modalcomponentprop) to see how it's used.
-
-### ModalProp ➜ ModalProp (with props & params now)
-
-If you were already using the TypeScript definition files, `ModalProp` used in regular components has been updated by a more complete/simpler to use `ModalProp`. Check out its updated section in the [**TypeScript guide**](typing.md#modalprop) to see how it's used.
-
-{% hint style="success" %}
-This guide is a work in progress! As more people upgrade their apps we can continue to improve it. Please send pull requests to add any suggestions that you have from your upgrade experience.
+{% hint style="info" %}
+If you're coming from the v1 API, we'd highly suggest going through the [Upgrading from v1.x](https://colorfy-software.gitbook.io/react-native-modalfy/v/2.x/guides/upgrading) guide first.
 {% endhint %}
 
+### `ModalOptions.shouldAnimateOut` has been dropped
+
+As announced in the v2 release, the `shouldAnimateOut` modal option has been dropped after being deprecated since June 2020. If you haven't transitioned yet, you can use [**`animationOut`**](../api/types/modaloptions.md#animationout) or [**`animationConfigOut`**](../api/types/modaloptions.md#animateoutconfig) instead.
+
+### `ModalOptions.animateOut`: new mandatory `callback` argument
+
+v2.1 brought up a new way to drive animations by putting you in full control whenever a modal is being opened and/or closed: [**`animationIn`**](../api/types/modaloptions.md#animationin) & [**`animationOut`**](../api/types/modaloptions.md#animationout).
+
+Since v3, you _**must**_** ** use the new 3rd `callback` argument provided to you. This is required so that [your callbacks can be invoked](triggering-a-callback.md) at the end of the animation(s) you'll define, for instance. Example:
+
+{% tabs %}
+{% tab title="TypeScript" %}
+{% code title="src/App.tsx" %}
+```typescript
+import { Animated } from 'react-native'
+import type { ModalOptions } from 'react-native-modalfy'
+
+const animate = (
+  animatedValue: Animated.Value,
+  toValue: number,
+  callback?: () => void,
+) => {
+  Animated.spring(animatedValue, {
+    toValue,
+    damping: 10,
+    mass: 0.35,
+    stiffness: 100,
+    overshootClamping: true,
+    restSpeedThreshold: 0.001,
+    restDisplacementThreshold: 0.001,
+    useNativeDriver: true,
+  }).start(({ finished }) => {
+    if (finished) callback?.()
+  })
+}
+
+const defaultOptions: ModalOptions = {
+  animationIn: animate,
+  animationOut: animate,
+  transitionOptions: (animatedValue) => ({
+    opacity: animatedValue.interpolate({
+      inputRange: [0, 1, 2],
+      outputRange: [0, 1, 0.9],
+    }),
+  }),
+}
+
+// ...
+```
+{% endcode %}
+{% endtab %}
+
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
+
+{% hint style="warning" %}
+Invoking`callback`is _required_ if you are using[**`animationOut`**](../api/types/modaloptions.md#animationout)in particular. That's because, since v3, Modalfy relies on that callback being invoked to mark a modal as closed in its own internal state. That's why`callback` is an optionally provided argument for [**`animationIn`**](../api/types/modaloptions.md#animationin) but always provided for[**`animationOut`**](../api/types/modaloptions.md#animationout).
+{% endhint %}
+
+**And that's it!** Everything else should just work as expected, enjoy! :partying\_face:&#x20;

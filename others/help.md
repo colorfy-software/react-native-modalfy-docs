@@ -16,5 +16,5 @@ Ask questions and find answers from other users like you. Many members of the co
 
 ## Stay up to date
 
-Find out what's new with React Native Modalfy directly inside the [changelog](https://github.com/colorfy-software/react-native-modalfy/blob/master/CHANGELOG.md).
+Find out what's new with React Native Modalfy directly inside the [changelog](https://github.com/colorfy-software/react-native-modalfy/releases).
 

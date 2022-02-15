@@ -8,16 +8,16 @@ Once in a while, we might want to perform some animations alongside the ones app
 {% tab title="React JSX" %}
 {% code title="./modals/EmptyModal.tsx" %}
 ```jsx
-import React from 'react'
+import React, { useEffect, useRef }  from 'react'
 
 const EmptyModal = ({ modal: { addListener }) => {
-  const modalListener = React.useRef()
+  const modalListener = useRef()
 
   const handleAnimation = (value) => {
     console.log('Modal animatedValue:', value)
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     modalListener.current = addListener('onAnimate', handleAnimation)
     
     return () => {

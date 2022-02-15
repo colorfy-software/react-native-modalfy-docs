@@ -1,15 +1,11 @@
 # withModal
 
 {% hint style="info" %}
-HOC that provides the `modal` prop to a wrapped Class component.
+HOC that provides the `modal` prop to a wrapped Class component. The `modal` prop injected by`withodal()`is covered in [**`ModalProp`**](types/modalprop.md).
 {% endhint %}
 
 {% hint style="danger" %}
-**Note:** Prefer [**useModal()**](usemodal.md) Hooks if you're using a functional component.
-{% endhint %}
-
-{% hint style="success" %}
-The `modal` prop injected by`withodal()`is covered in [**ModalProp**](types/modalprop.md).
+**Note:** Prefer[**`useModal()`**](usemodal.md)Hooks if you're using a functional component.
 {% endhint %}
 
 {% tabs %}
@@ -18,6 +14,7 @@ The `modal` prop injected by`withodal()`is covered in [**ModalProp**](types/moda
 const withModal = <P extends ModalfyParams, Props extends object>(
   Component: React.ComponentClass<Props>,
 ) => {
+  const { closeModal, closeModals, closeAllModals } = modalfy<P>()
   class WithModalComponent extends React.Component<ModalProp<P, Props>> {
     render() {
       return (
@@ -25,11 +22,11 @@ const withModal = <P extends ModalfyParams, Props extends object>(
           {(context) => (
             <Component
               modal={{
-                closeAllModals: context.closeAllModals,
-                currentModal: context.currentModal,
-                closeModals: context.closeModals,
-                closeModal: context.closeModal,
+                closeModal,
+                closeModals,
+                closeAllModals,
                 openModal: context.openModal,
+                currentModal: context.currentModal,
               }}
             />
           )}
@@ -44,9 +41,7 @@ const withModal = <P extends ModalfyParams, Props extends object>(
 {% endtab %}
 {% endtabs %}
 
-{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/master/lib/withModal.ts" %}
-Types have been simplified for the sake of clarity. Refer to the exact definitions here.
-{% endembed %}
+{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/lib/withModal.tsx" %}
 
 ## API reference
 
@@ -72,13 +67,13 @@ class ProfileScreen extends Component {
 export default withModal(ProfileScreen)
 ```
 
-Using `withModal` will give you access to:
+Using **`withModal()`** will give you access to:
 
 * `this.props.modal`
-  * `currentModal`: name of the current displayed modal if there's one
+  * `currentModal`: name of the currently displayed modal if there's one
   * `openModal`: open a specific modal
   * `closeModal`: close a modal
   * `closeModals`: close every instance of a given modal
   * `closeAllModals`: close all open modals
 
-as seen in [**ModalProp**](types/modalprop.md).
+as seen in [**`ModalProp`**](types/modalprop.md).
