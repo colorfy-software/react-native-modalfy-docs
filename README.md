@@ -25,7 +25,7 @@ After reading this documentation you'll realize that [React Navigation](https://
 If you think about it: modals are simply another form of "navigating between screens". React Navigation being the navigation library we use at colorfy (and incidentally one of the most used in the React Native ecosystem), taking inspiration from their API looked like a natural choice.
 
 {% hint style="danger" %}
-Given that React Native Modalfy uses the new React Context & Hooks APIs added respectively in React 16.3.0 and React 16.8.0, **we'll require you to use at least `react-native@^0.59.0`**(that ships with React 16.8.3).
+<mark style="color:red;">Given that React Native Modalfy uses the new React Context & Hooks APIs added respectively in React 16.3.0 and React 16.8.0,</mark> <mark style="color:red;"></mark><mark style="color:red;">**we'll require you to use at least**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**`react-native@^0.59.0`**</mark><mark style="color:red;">(that ships with React 16.8.3).</mark>
 {% endhint %}
 
 ## Try it now

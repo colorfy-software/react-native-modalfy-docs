@@ -5,7 +5,7 @@ Function that exposes Modalfy's API outside of React's context. The object retur
 {% endhint %}
 
 {% hint style="danger" %}
-**Note: Do not use if you're inside a React component.** Please consider [**`useModal()`**](usemodal.md) or [**`withModal()`**](withmodal.md) instead.
+<mark style="color:red;">**Note: Do not use if you're inside a React component.**</mark> <mark style="color:red;"></mark><mark style="color:red;">Please consider</mark> [<mark style="color:red;">**`useModal()`**</mark>](usemodal.md) <mark style="color:red;">or</mark> [<mark style="color:red;">**`withModal()`**</mark>](withmodal.md) <mark style="color:red;">instead.</mark>
 {% endhint %}
 
 {% tabs %}

@@ -5,7 +5,7 @@ HOC that provides the `modal` prop to a wrapped Class component. The `modal` pro
 {% endhint %}
 
 {% hint style="danger" %}
-**Note:** Prefer[**`useModal()`**](usemodal.md)Hooks if you're using a functional component.
+<mark style="color:red;">**Note:**</mark> <mark style="color:red;"></mark><mark style="color:red;">Prefer</mark>[<mark style="color:red;">**`useModal()`**</mark>](usemodal.md)<mark style="color:red;">Hooks if you're using a functional component.</mark>
 {% endhint %}
 
 {% tabs %}

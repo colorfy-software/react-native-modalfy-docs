@@ -74,9 +74,9 @@ No need to use these 2 interfaces as`createModalStack()`is already doing it unde
 This interface allows you to type check the `modal` prop that your regular component will get access to by using [**`withModal()`**](../api/withmodal.md) HOC. This means that you'll have to keep a few things in mind:
 
 {% hint style="danger" %}
-* If you're inside **a modal component and not a "regular" component,** you should use **`ModalComponentProp` instead**.
-* If you're using ** `useModal()` Hook,** no need to employ`ModalProp`**a**s the Hook itself will take care of all the typing. **Simply provide your params interface to the Hook as such `useModal<ModalStackParams>()`**(explained below)**.**
-* The main and potentially **only use case for** `ModalProp` **then is when you're using a Class component**
+* <mark style="color:red;">If you're inside</mark> <mark style="color:red;"></mark><mark style="color:red;">**a modal component and not a "regular" component,**</mark> <mark style="color:red;"></mark><mark style="color:red;">you should use</mark> <mark style="color:red;"></mark><mark style="color:red;">**`ModalComponentProp`**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**instead**</mark><mark style="color:red;">.</mark>
+* If you're using ** **<mark style="color:red;">**`useModal()`**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**Hook**</mark>**,** no need to employ`ModalProp`**a**s the Hook itself will take care of all the typing. ** **<mark style="color:red;">**Simply provide your params interface to the Hook as such**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**`useModal<ModalStackParams>()`**</mark>(explained below)**.**
+* The main and potentially ** **<mark style="color:red;">**only use case for**</mark> <mark style="color:red;"></mark><mark style="color:red;">`ModalProp`</mark> <mark style="color:red;"></mark><mark style="color:red;">**then is when you're using a Class component**</mark>.
 {% endhint %}
 
 Now that we've covered the gotchas, let's see [**`ModalProp`**](../api/types/modalprop.md) in action. In this example, we created a `<PokedexCard/>` component that's will open a modal with the full details about a specific Pokemon, with its name, type and entry number in the [Pokédex](https://www.pokemon.com/pokedex):
@@ -179,7 +179,7 @@ You'd also realize that we didn't pass `ModalStackParams` as a generic to [**`wi
 This interface works on the same principles as [**`ModalProp`**](../api/types/modalprop.md) with just some key differences to keep in mind. The first and most important is:
 
 {% hint style="danger" %}
-&#x20;`ModalComponentProp` **should only be used with modal components (rendered by Modalfy)!**
+<mark style="color:red;">`ModalComponentProp`</mark> <mark style="color:red;"></mark><mark style="color:red;"></mark> <mark style="color:red;"></mark><mark style="color:red;">**should only be used with modal components (rendered by Modalfy)!**</mark>
 {% endhint %}
 
 &#x20;**** If the component you're working on is not rendered by Modalfy directly/part of your [**`createModalStack()`**](../api/createmodalstack.md) config, you should use [**`ModalProp`**](../api/types/modalprop.md) instead.
@@ -299,7 +299,7 @@ Please check out the [**`ModalComponentProp`**](../api/types/modalcomponentprop.
 #### ****[**> ModalComponentWithOptions API**](../api/types/modalcomponentwithoptions.md)****
 
 {% hint style="danger" %}
-`ModalComponentWithOptions` **is only meant to be used with Hooks modal components**. **** If you're working with classes, simply use the **** static`modalOptions`property as explained below.
+<mark style="color:red;">`ModalComponentWithOptions`</mark> <mark style="color:red;"></mark><mark style="color:red;"></mark> <mark style="color:red;"></mark><mark style="color:red;">**is only meant to be used with Hooks modal components**</mark><mark style="color:red;">.</mark> <mark style="color:red;"></mark><mark style="color:red;">****</mark> <mark style="color:red;"></mark><mark style="color:red;">If you're working with classes, simply use the</mark> <mark style="color:red;"></mark><mark style="color:red;">****</mark> <mark style="color:red;"></mark><mark style="color:red;">static</mark><mark style="color:red;">`modalOptions`</mark><mark style="color:red;">property as explained below.</mark>
 {% endhint %}
 
 As we saw in the [**Configuring a stack**](stack.md#configuring-the-stack) guide, you have 3 different ways to provide options to a modal. While the first 2 are type-checked during the modal stack creation, only the 3rd one involves typing `modalOptions` from within the modal component itself.&#x20;

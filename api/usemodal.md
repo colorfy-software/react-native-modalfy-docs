@@ -5,7 +5,7 @@ Hooks that exposes Modalfy's API. The object returned by `useModal()`is covered 
 {% endhint %}
 
 {% hint style="danger" %}
-**Note:** Prefer [**`withModal()`**](withmodal.md) HOC if you're using a Class component.
+<mark style="color:red;">**Note:**</mark> <mark style="color:red;"></mark><mark style="color:red;">Prefer</mark> [<mark style="color:red;">**`withModal()`**</mark>](withmodal.md) <mark style="color:red;">HOC if you're using a Class component.</mark>
 {% endhint %}
 
 {% tabs %}
