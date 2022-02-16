@@ -14,7 +14,7 @@ We're back today with a new major version that brings a lot of long-requested fi
 Web support in action with Modalfy v3
 {% endembed %}
 
-This feature has been [a long time coming](https://github.com/colorfy-software/react-native-modalfy/issues/38) and finally, starting with Modal v3, the library supports React Native Web as well. There is a demo app [available on Expo](https://snack.expo.io/@charles.m/react-native-modalfy) for you to give a try. Massive props here to [@jakobo](https://twitter.com/jakobo) who did a lot of the groundwork that helped assess the feature feasibility as well as identify some edge cases! We're really excited to see Modalfy allow you to target different platforms with more ease and consolidate your codebases.
+This feature has been [a long time coming](https://github.com/colorfy-software/react-native-modalfy/issues/38) and finally, starting with Modal v3, the library supports React Native Web as well. There is a demo app [available on Expo](https://snack.expo.io/@charles.m/react-native-modalfy) for you to give it a try. Massive props here to [@jakobo](https://twitter.com/jakobo) who did a lot of the groundwork that helped assess the feature feasibility as well as identify some edge cases! We're really excited to see Modalfy allow you to target different platforms with more ease and consolidate your codebases.
 
 ## Actions callback
 

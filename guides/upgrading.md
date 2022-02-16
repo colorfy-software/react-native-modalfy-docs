@@ -10,7 +10,7 @@ If you're coming from the v1 API, we'd highly suggest going through the [Upgradi
 
 As announced in the v2 release, the `shouldAnimateOut` modal option has been dropped after being deprecated since June 2020. If you haven't transitioned yet, you can use [**`animationOut`**](../api/types/modaloptions.md#animationout) or [**`animationConfigOut`**](../api/types/modaloptions.md#animateoutconfig) instead.
 
-### `ModalOptions.animateOut`: new mandatory `callback` argument
+### `ModalOptions.animateOut` has a new mandatory `callback` argument
 
 v2.1 brought up a new way to drive animations by putting you in full control whenever a modal is being opened and/or closed: [**`animationIn`**](../api/types/modaloptions.md#animationin) & [**`animationOut`**](../api/types/modaloptions.md#animationout).
 
@@ -57,14 +57,10 @@ const defaultOptions: ModalOptions = {
 ```
 {% endcode %}
 {% endtab %}
-
-{% tab title="Second Tab" %}
-
-{% endtab %}
 {% endtabs %}
 
 {% hint style="warning" %}
-Invoking`callback`is _required_ if you are using[**`animationOut`**](../api/types/modaloptions.md#animationout)in particular. That's because, since v3, Modalfy relies on that callback being invoked to mark a modal as closed in its own internal state. That's why`callback` is an optionally provided argument for [**`animationIn`**](../api/types/modaloptions.md#animationin) but always provided for[**`animationOut`**](../api/types/modaloptions.md#animationout).
+Invoking`callback`is _required_ if you are using[**`animationOut`**](../api/types/modaloptions.md#animationout). That's because, since v3, Modalfy relies on that callback being invoked to mark a modal as closed in its own internal state. That's why`callback` is an optionally provided argument for [**`animationIn`**](../api/types/modaloptions.md#animationin)but always provided for[**`animationOut`**](../api/types/modaloptions.md#animationout).
 {% endhint %}
 
 **And that's it!** Everything else should just work as expected, enjoy! :partying\_face:&#x20;
