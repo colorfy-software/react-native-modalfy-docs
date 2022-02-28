@@ -65,7 +65,7 @@ Function that allows you to hook a listener to the modal component you're in. Ri
 {% code title="./modals/AlertModal.tsx" %}
 ```typescript
 import React, { useRef } from 'react'
-import { ModalEventListener } from 'react-native-modalfy'
+import { ModalEventCallback, ModalEventListener } from 'react-native-modalfy'
 
 const AlertModal = ({ modal: { addListener }) => {
   const onAnimateListener = useRef<ModalEventListener | undefined>()
@@ -161,8 +161,12 @@ Removes all the listeners connected to the modal component you're in.
 
 **Example:**&#x20;
 
+{% tabs %}
+{% tab title="TypeScript React" %}
+{% code title="./modals/AlertModal.tsx" %}
 ```typescript
 import React, { useCallback, useEffect, useRef } from 'react'
+import { ModalEventCallback, ModalEventListener } from 'react-native-modalfy'
 
 const AlertModal = ({ modal: { addListener, removeAllListeners }) => {
   const onAnimateListener = useRef<ModalEventListener | undefined>()
@@ -192,6 +196,11 @@ const AlertModal = ({ modal: { addListener, removeAllListeners }) => {
 
 export default AlertModal
 ```
+{% endcode %}
+
+
+{% endtab %}
+{% endtabs %}
 
 ### `params`&#x20;
 
