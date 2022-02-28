@@ -165,19 +165,25 @@ Removes all the listeners connected to the modal component you're in.
 import React, { useCallback, useEffect, useRef } from 'react'
 
 const AlertModal = ({ modal: { addListener, removeAllListeners }) => {
-  const modalListener = useRef()
+  const onAnimateListener = useRef<ModalEventListener | undefined>()
+  const onCloseListener = useRef<ModalEventListener | undefined>()
 
   const handleAnimation: ModalEventCallback = useCallback((value) => {
     console.log('🆕 Modal animatedValue:', value)
   }, [])
+  
+  const handleClose: ModalEventCallback = useCallback(() => {
+    console.log('👋 Modal closed')
+  }, [])
 
   useEffect(() => {
-    modalListener.current = addListener('onAnimate', handleAnimation)
+    onAnimateListener.current = addListener('onAnimate', handleAnimation)
+    onCloseListener.current = addListener('onClose', handleClose)
     
     return () => {
       removeAllListeners()
     }
-  }, [handleAnimation])
+  }, [handleAnimation, handleClose, removeAllListeners])
 
   return (
     //...
