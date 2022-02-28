@@ -61,8 +61,8 @@ Function that allows you to hook a listener to the modal component you're in. Ri
 **Example:**&#x20;
 
 {% tabs %}
-{% tab title="React JSX" %}
-{% code title="./modals/AlertModal.js" %}
+{% tab title="TypeScript React" %}
+{% code title="./modals/AlertModal.tsx" %}
 ```typescript
 import React, { useRef } from 'react'
 import { ModalEventListener } from 'react-native-modalfy'
@@ -81,7 +81,7 @@ const AlertModal = ({ modal: { addListener }) => {
 
   useEffect(() => {
     onAnimateListener.current = addListener('onAnimate', handleAnimation)
-    onCloseListener.current = addListener('onAnimate', handleClose)
+    onCloseListener.current = addListener('onClose', handleClose)
     
     return () => {
       onAnimateListener.current?.remove()
@@ -94,7 +94,7 @@ const AlertModal = ({ modal: { addListener }) => {
   )
 }
 
-export default EmptyModal
+export default AlertModal
 ```
 {% endcode %}
 {% endtab %}
@@ -162,29 +162,29 @@ Removes all the listeners connected to the modal component you're in.
 **Example:**&#x20;
 
 ```typescript
-import React from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 
-const EmptyModal = ({ modal: { addListener, removeAllListeners }) => {
-  const modalListener = React.useRef()
+const AlertModal = ({ modal: { addListener, removeAllListeners }) => {
+  const modalListener = useRef()
 
-  const handleAnimation = (value) => {
-    console.log('Modal animatedValue:', value)
-  }
+  const handleAnimation: ModalEventCallback = useCallback((value) => {
+    console.log('🆕 Modal animatedValue:', value)
+  }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     modalListener.current = addListener('onAnimate', handleAnimation)
     
     return () => {
       removeAllListeners()
     }
-  }, [])
+  }, [handleAnimation])
 
   return (
     //...
   )
 }
 
-export default EmptyModal
+export default AlertModal
 ```
 
 ### `params`&#x20;
