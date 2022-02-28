@@ -56,30 +56,38 @@ type ModalEventListener = { remove: () => boolean }
 addListener: ModalListener
 ```
 
-Function that allows you to hook a listener to the `animatedValue` of the modal represented by the component you're in.
+Function that allows you to hook a listener to the modal component you're in. Right now, only 2 listener types are supported: `'onAnimate'` and `'onClose'`.
 
 **Example:**&#x20;
 
 {% tabs %}
 {% tab title="React JSX" %}
-{% code title="./modals/EmptyModal.js" %}
+{% code title="./modals/AlertModal.js" %}
 ```typescript
-import React from 'react'
+import React, { useRef } from 'react'
+import { ModalEventListener } from 'react-native-modalfy'
 
-const EmptyModal = ({ modal: { addListener }) => {
-  const modalListener = React.useRef()
+const AlertModal = ({ modal: { addListener }) => {
+  const onAnimateListener = useRef<ModalEventListener | undefined>()
+  const onCloseListener = useRef<ModalEventListener | undefined>()
 
-  const handleAnimation = (value) => {
-    console.log('Modal animatedValue:', value)
-  }
+  const handleAnimation: ModalEventCallback = useCallback((value) => {
+    console.log('🆕 Modal animatedValue:', value)
+  }, [])
+  
+  const handleClose: ModalEventCallback = useCallback(() => {
+    console.log('👋 Modal closed')
+  }, [])
 
-  React.useEffect(() => {
-    modalListener.current = addListener('onAnimate', handleAnimation)
+  useEffect(() => {
+    onAnimateListener.current = addListener('onAnimate', handleAnimation)
+    onCloseListener.current = addListener('onAnimate', handleClose)
     
     return () => {
-      modalListener.current?.remove()
+      onAnimateListener.current?.remove()
+      onCloseListener.current?.remove()
     }
-  }, [])
+  }, [addListener, handleAnimation, handleClose])
 
   return (
     //...
@@ -91,6 +99,10 @@ export default EmptyModal
 {% endcode %}
 {% endtab %}
 {% endtabs %}
+
+{% hint style="info" %}
+**Note**: Only the`'onAnimate'`listener will receive the current animation value.
+{% endhint %}
 
 ### `getParam`&#x20;
 
