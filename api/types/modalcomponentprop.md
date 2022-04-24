@@ -37,9 +37,18 @@ interface UsableModalComponentProp<
 }
 
 type ModalListener = (
-  eventName: 'onAnimate',
-  callback: (value?: number) => void,
+  eventName: ModalEventName,
+  callback: ModalEventCallback,
 ) => ModalEventListener
+
+type ModalOnAnimateEventCallback = (value?: number) => void
+type ModalOnCloseEventCallback = (closingAction: {
+  type: ModalClosingActionName
+  origin: ModalClosingActionOrigin
+}) => void
+type ModalClosingActionName = 'closeModal' | 'closeModals' | 'closeAllModals'
+type ModalClosingActionOrigin = 'default' | 'fling' | 'backdrop'
+type ModalEventCallback = ModalOnAnimateEventCallback | ModalOnCloseEventCallback
 
 type ModalEventListener = { remove: () => boolean }
 ```
@@ -65,19 +74,27 @@ Function that allows you to hook a listener to the modal component you're in. Ri
 {% code title="./modals/AlertModal.tsx" %}
 ```typescript
 import React, { useRef } from 'react'
-import { ModalEventCallback, ModalEventListener } from 'react-native-modalfy'
+import {
+  ModalEventCallback,
+  ModalEventListener,
+  ModalOnCloseEventCallback,
+  ModalOnAnimateEventCallback,
+} from 'react-native-modalfy'
 
 const AlertModal = ({ modal: { addListener }) => {
   const onAnimateListener = useRef<ModalEventListener | undefined>()
   const onCloseListener = useRef<ModalEventListener | undefined>()
 
-  const handleAnimation: ModalEventCallback = useCallback((value) => {
+  const handleAnimation: ModalOnAnimateEventCallback = useCallback((value) => {
     console.log('🆕 Modal animatedValue:', value)
   }, [])
   
-  const handleClose: ModalEventCallback = useCallback(() => {
-    console.log('👋 Modal closed')
-  }, [])
+  const handleClose: ModalOnCloseEventCallback = useCallback(
+    closingAction => {
+      console.log(`👋 Modal closed by: ${closingAction.type} • ${closingAction.origin}`)
+    },
+    []
+  )
 
   useEffect(() => {
     onAnimateListener.current = addListener('onAnimate', handleAnimation)
@@ -99,10 +116,6 @@ export default AlertModal
 {% endcode %}
 {% endtab %}
 {% endtabs %}
-
-{% hint style="info" %}
-**Note**: Only the`'onAnimate'`listener will receive the current animation value.
-{% endhint %}
 
 ### `getParam`&#x20;
 
