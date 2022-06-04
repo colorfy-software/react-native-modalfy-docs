@@ -37,6 +37,8 @@ export interface ModalOptions {
   
   backdropOpacity?: number
   
+  backdropAnimationDuration?: number
+  
   containerStyle?: ViewStyle
   
   disableFlingGesture?: boolean
@@ -218,6 +220,16 @@ backdropOpacity?: number
 Number between `0` and `1` that defines the backdrop opacity.
 
 **Default:**  `0.6`
+
+### `backdropAnimationDuration`
+
+```typescript
+backdropAnimationDuration?: number
+```
+
+Number that defines how long the backdrop should take to animate in and out.
+
+**Default:**  `300`
 
 ### `containerStyle`
 
