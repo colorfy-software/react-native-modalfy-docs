@@ -89,7 +89,7 @@ import React from 'react'
 import { ModalProvider, createModalStack } from 'react-native-modalfy'
 
 import Navigation from './navigation'
-import { ErrorModal } from './components/Modals'
+import ErrorModal from './components/modals/ErrorModal'
 
 const modalConfig = { ErrorModal }
 const defaultOptions = { backdropOpacity: 0.6 }
