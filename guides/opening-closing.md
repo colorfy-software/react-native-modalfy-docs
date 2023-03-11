@@ -8,6 +8,10 @@ As soon as our modal stack is set up, we can start using it from wherever we wan
 
 **3.** Or if we're just in plain vanilla JavaScript, outside React
 
+{% hint style="info" %}
+If you want to execute some code _right after_ calling an initial [**`openModal()`**](../api/types/modalprop.md#openmodal)`/`[**`closeModal()`**](../api/types/modalprop.md#closemodal)(ie: opening/closing another modal? making API calls? etc) or any other Modalfy methds, you can use Modalfy's callback API to that effect. Please refer to our [**Triggering a callback**](triggering-a-callback.md) guide.
+{% endhint %}
+
 ## 1. From a regular component
 
 #### [> ModalProp API](../api/types/modalprop.md)
@@ -21,11 +25,11 @@ From there, amongst other things, we'll cover later (if you can't wait, check ou
 {% code title="./components/Message.js" %}
 ```jsx
 import React from 'react'
-import { Button, Text, View } from 'react-native'
 import { useModal } from 'react-native-modalfy'
+import { Button, Text, View } from 'react-native'
 
 const Message = () => {
-  const { openModal, closeModal } = useModal()
+  const { openModal } = useModal()
 
   const sendMessage = () => openModal('MessageSentModal'))
 
@@ -45,7 +49,7 @@ export default Message
 {% endtabs %}
 
 {% hint style="warning" %}
-Have a look at [**`ModalProp`**](../api/types/modalprop.md) API reference to have a complete overview of what does `modal` brings with it. The most important thing to notice is that regular components ([**`ModalProp`**](../api/types/modalprop.md))  and modal components ([**`ModalComponentProp`**](../api/types/modalcomponentprop.md)) do not have access to the same things inside `modal`.
+Have a look at [**`ModalProp`**](../api/types/modalprop.md) API reference to have a complete overview of what does `modal`brings with it. The most important thing to notice is that regular components ([**`ModalProp`**](../api/types/modalprop.md))  and modal components ([**`ModalComponentProp`**](../api/types/modalcomponentprop.md)) do not have access to the same things inside `modal`.
 {% endhint %}
 
 ## 2. From a modal component
@@ -100,4 +104,4 @@ We can call `openModal('NoConnection')`, `openModal('MessageSentModal')`, etc.
 
 Since Modalfy v2, we can interact with the modal stack from outside React. Possible use cases for this could be opening/closing modals from API calls or when there is a specific change in the global state, etc.
 
-If you want to learn more about this, head over to the [**Using outside React**](outside-react.md) guide.
+If you want to learn more about this, head over to the [**Using outside of React**](outside-react.md) guide.

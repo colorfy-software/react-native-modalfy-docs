@@ -2,7 +2,7 @@
 
 #### [> ModalProp API](../api/types/modalprop.md)
 
-You may often want to perform an action as soon as you open or close a modal. Up until now, you had to skillfully employ `setTimeout()` in order to trigger your function after the modal is done animated. With Modalfy v3, you no longer have to think about it thanks to the built-in support of callbacks.
+You may often want to perform an action as soon as you open or close a modal. Up until now, you had to skillfully employ `setTimeout()` in order to trigger your function after the modal is done animating. With Modalfy v3, you no longer have to think about it thanks to the built-in support of callbacks.
 
 ## 1. When opening
 
@@ -11,14 +11,14 @@ The [**`openModal()`**](../api/types/modalprop.md#openmodal) function now accept
 {% tabs %}
 {% tab title="TypeScript" %}
 ```typescript
+openModal('WelcomeModal', undefined, () => {
+  console.log(`✅ Opened WelcomeModal`)
+})
+
 openModal('ErrorModal', { titleColor: 'red' }, () => {
-  console.log(`✅ Opened ErrorModal`)
+  closeModal('WelcomeModal')
 })
 ```
-{% endtab %}
-
-{% tab title="Second Tab" %}
-
 {% endtab %}
 {% endtabs %}
 
@@ -33,16 +33,12 @@ As you'd expect, all the closing methods have also received a new argument that 
 {% tabs %}
 {% tab title="TypeScript" %}
 ```typescript
-closeModal(undefined, () => console.log('✅ Closed latest opened modal'))
+closeModal('ErrorModal', () => openModal('LoginModal'))
 
 closeModals('ErrorModal', () => console.log('✅ Closed all ErrorModal'))
 
 closeAllModals(() => console.log('✅ Closed all modals'))
 ```
-{% endtab %}
-
-{% tab title="Second Tab" %}
-
 {% endtab %}
 {% endtabs %}
 
