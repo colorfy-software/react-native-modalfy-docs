@@ -265,6 +265,23 @@ React component that will be rendered when you'll open the modal.
 
 **Default:**  -
 
+### `pointerEventsBehavior`
+
+```typescript
+pointerEventsBehavior?: 'auto' | 'none' | 'current-modal-only' | 'current-modal-none'
+```
+
+How you want any modal to respond to a touch/click.
+
+**Note:**&#x20;
+
+* `'auto'` means that you want the default behavior. The modal will catch touch events and propagate them automatically.
+* `'none'` means that you don't want the modal to catch _any_ touch event. Touching/clicking on it will not trigger anything.
+* `'current-modal-only'` means that you only want the modal at the top of the stack to be touchable/clickable. Interacting with any modal below will not be possible and will be considered as interacting with the backdrop instead.
+* `'current-modal-none'` means that you don't want the current modal to be touchable/clickable. Nothing will happen when you'll interact with it but the modals below and the backdrop will still be reachable.
+
+**Default:**  `'auto'`
+
 ### `position`
 
 ```typescript
