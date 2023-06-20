@@ -5,7 +5,7 @@ There are **6** main interfaces that you'll use throughout your experience with 
 * [**`ModalStackConfig`**](../api/types/modalstackconfig.md) - Interface of the modal stack configuration (needed once).
 * [**`ModalOptions`**](../api/types/modaloptions.md) - Interface of the modal configuration options.
 * [**`ModalProp`**](../api/types/modalprop.md) **-** Interface of the `modal` prop exposed by the library.
-* [**`ModalComponentProp`**](../api/types/modalcomponentprop.md) **/** [**`ModalProps`**](../api/types/modalcomponentprop.md)  - Interface of the `modal` prop exposed by the library (specifically for modal components).
+* [**`ModalComponentProp`**](../api/types/modalcomponentprop.md) **/** [**`ModalProps`**](../api/types/modalprops.md)  - Interface of the `modal` prop exposed by the library (specifically for modal components).
 * [**`ModalComponentWithOptions`**](../api/types/modalcomponentwithoptions.md) - Interface that adds type support of the `modalOptions` property (specifically for Hooks modal components).
 
 The 6th and last main interface will actually be provided **by you**, as Modalfy v2 brought support for modal params type. That interface is going to be used mainly by [**`ModalProp`**](../api/types/modalprop.md), [**`ModalComponentProp`**](../api/types/modalcomponentprop.md) and [**`modalfy()`**](../api/modalfy.md). But for now: let's see how to use the other interfaces we just mentioned.
@@ -174,7 +174,9 @@ You'd also realize that we didn't pass `ModalStackParams` as a generic to [**`wi
 
 ## **ModalComponentProp & ModalProps**
 
-#### [**> ModalComponentProp/ModalProps API**](../api/types/modalcomponentprop.md)
+#### [**> ModalComponentProp API**](../api/types/modalcomponentprop.md)
+
+#### [**> ModalProps API**](../api/types/modalprops.md)
 
 These types work on the same principles as [**`ModalProp`**](../api/types/modalprop.md) with just some key differences to keep in mind. The first and most important is:
 
@@ -194,7 +196,7 @@ type Props = ModalComponentProp<
 >
 ```
 
-But starting with `v3.5.0`, we now have a simplified version of `ModalComponentProp` named `ModalProps`.
+But starting with `v3.5.0`, we now have a simplified version of `ModalComponentProp` named [**`ModalProps`**](../api/types/modalprops.md).
 
 If we reuse our Pokédex example, first we'd need to define our `ModalStackParams` as explained at the end of the previous section.&#x20;
 
@@ -264,7 +266,7 @@ type Props = ModalProps<'PokedexEntryModal' | 'FavouritePokemonModal'>
 {% endcode %}
 {% endhint %}
 
-Although you'll never manually render `<PokedexEntryModal>`yourself, [**`ModalComponentProp/ModalProps`**](../api/types/modalcomponentprop.md) voluntarily expects props types as your modal component could be getting props from some HOCs. ie:
+Although you'll never manually render `<PokedexEntryModal>`yourself, [**`ModalComponentProp`**](../api/types/modalcomponentprop.md) / [**`ModalProps`**](../api/types/modalprops.md) voluntarily expects props types as your modal component could be getting props from some HOCs. ie:
 
 {% tabs %}
 {% tab title="Class" %}
@@ -299,7 +301,7 @@ export default connect(mapStateToProps)(PokedexEntryModal)
 {% endtabs %}
 
 {% hint style="info" %}
-Please check out the [**`ModalComponentProp/ModalProps`**](../api/types/modalcomponentprop.md) API reference to have an exhaustive list of what it brings with it.
+Please check out the [**`ModalComponentProp`**](../api/types/modalcomponentprop.md)`/`[**`ModalProps`**](../api/types/modalprops.md)API reference to have an exhaustive list of what it brings with it.
 {% endhint %}
 
 ## **ModalComponentWithOptions**
@@ -399,7 +401,7 @@ export type ModalStackParams = {
 ```
 {% endcode %}
 
-2. Create a `react-native-modalfy.d.ts` declaration file. Could br at the same file level where   `createModalStack` is called and add:
+2. Create a `react-native-modalfy.d.ts` declaration file. Could be at the same file level where   `createModalStack` is called and add:
 
 {% code title="./src/react-native-modalfy.d.ts" %}
 ```typescript

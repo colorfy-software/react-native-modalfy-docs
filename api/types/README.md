@@ -16,6 +16,10 @@
 [modalcomponentprop.md](modalcomponentprop.md)
 {% endcontent-ref %}
 
+{% content-ref url="modalprops.md" %}
+[modalprops.md](modalprops.md)
+{% endcontent-ref %}
+
 {% content-ref url="modalcomponentwithoptions.md" %}
 [modalcomponentwithoptions.md](modalcomponentwithoptions.md)
 {% endcontent-ref %}

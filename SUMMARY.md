@@ -20,6 +20,7 @@
   * [ModalStackConfig](api/types/modalstackconfig.md)
   * [ModalOptions](api/types/modaloptions.md)
   * [ModalProp](api/types/modalprop.md)
+  * [ModalProps](api/types/modalprops.md)
   * [ModalComponentProp](api/types/modalcomponentprop.md)
   * [ModalComponentWithOptions](api/types/modalcomponentwithoptions.md)
 * [ModalProvider](api/modalprovider.md)
