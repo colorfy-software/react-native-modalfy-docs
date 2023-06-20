@@ -71,7 +71,7 @@ export type ModalTransitionValue =
 {% endtab %}
 {% endtabs %}
 
-{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L192-L352" %}
+{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L232-L406" %}
 
 ## API reference
 

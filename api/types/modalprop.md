@@ -31,12 +31,12 @@ interface UsableModalProp<
   currentModal: M | null
   
   openModal: (modalName: M, params?: P[M], callback?: () => void) => void
-}
+}github
 ```
 {% endtab %}
 {% endtabs %}
 
-{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L354-L373" %}
+{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L408-L427" %}
 
 ## API reference
 

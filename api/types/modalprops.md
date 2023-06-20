@@ -28,7 +28,7 @@ export type ModalProps<
 {% endtab %}
 {% endtabs %}
 
-{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L375-L395" %}
+{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L454-L469" %}
 
 ## API reference
 

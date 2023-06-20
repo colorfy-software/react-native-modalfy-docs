@@ -59,12 +59,12 @@ type ModalClosingActionName = 'closeModal' | 'closeModals' | 'closeAllModals'
 type ModalClosingActionOrigin = 'default' | 'fling' | 'backdrop'
 type ModalEventCallback = ModalOnAnimateEventCallback | ModalOnCloseEventCallback
 
-type ModalEventListener = { remove: () => boolean }
+type ModalEventListener = { remove: () => boolean }github
 ```
 {% endtab %}
 {% endtabs %}
 
-{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L375-L395" %}
+{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L429-L452" %}
 
 ## API reference
 
