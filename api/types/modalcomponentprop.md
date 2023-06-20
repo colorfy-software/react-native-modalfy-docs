@@ -5,7 +5,7 @@ Interface of the `modal` prop exposed by the library specifically to modal compo
 {% endhint %}
 
 {% hint style="success" %}
-**Note:** `ModalComponentProp` **** reuses the same types as [`ModalProp`](modalprop.md) and only adds 4 more on top of them.
+**Note:** `ModalComponentProp` reuses the same types as [`ModalProp`](modalprop.md) and only adds 4 more on top of them. Starting with `v3.5.0`, `ModalProps` is a simplified way of using`ModalComponentProp`.
 {% endhint %}
 
 {% tabs %}
@@ -18,6 +18,15 @@ export type ModalComponentProp<
 > = Props & {
   modal: UsableModalComponentProp<P, M>
 }
+
+export type ModalProps<
+  N extends keyof ModalfyParams = keyof ModalfyParams,
+  P = void
+> = ModalComponentProp<
+  ModalfyParams,
+  P,
+  N
+>
 
 // ------------------ INTERNAL TYPES ------------------ //
 
