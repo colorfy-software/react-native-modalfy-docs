@@ -124,9 +124,7 @@ animationIn: (modalAnimatedValue, modalToValue, callback) => {
       easing: Easing.inOut(Easing.exp),
       useNativeDriver: true,
     }),
-  ]).start(({ finished }) => {
-    if (finished) callback?()
-  })
+  ]).start(() => callback?.())
 }
 ```
 
@@ -179,9 +177,7 @@ animationOut: (modalAnimatedValue, modalToValue, callback) => {
       easing: Easing.inOut(Easing.exp),
       useNativeDriver: true,
     }),
-  ]).start(({ finished }) => {
-    if (finished) callback()
-  })
+  ]).start(() => callback?.())
 }
 ```
 
