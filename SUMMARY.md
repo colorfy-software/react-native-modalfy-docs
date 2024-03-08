@@ -36,7 +36,7 @@
 * [Stacks on stacks in React Native](https://medium.com/the-react-native-log/stacks-on-stacks-in-react-native-eb4f8fb9e4c9)
 * [Introducing a Modal Citizen](blog/modalfy-v1.md)
 
-## 🗃 Others
+## 🗃️ Others
 
 * [Help](others/help.md)
 * [Contributing](others/contributing.md)

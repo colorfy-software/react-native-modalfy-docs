@@ -82,15 +82,15 @@ Function that allows you to hook a listener to the modal component you're in. Ri
 {% tab title="TypeScript React" %}
 {% code title="./modals/AlertModal.tsx" %}
 ```typescript
-import React, { useRef } from 'react'
 import {
-  ModalEventCallback,
+  ModalProps,
   ModalEventListener,
   ModalOnCloseEventCallback,
   ModalOnAnimateEventCallback,
 } from 'react-native-modalfy'
+import React, { useRef } from 'react'
 
-const AlertModal = ({ modal: { addListener }) => {
+const AlertModal = ({ modal: { addListener } }: ModalProps<'AlertModal'>) => {
   const onAnimateListener = useRef<ModalEventListener | undefined>()
   const onCloseListener = useRef<ModalEventListener | undefined>()
 
