@@ -31,7 +31,7 @@ interface UsableModalProp<
   currentModal: M | null
   
   openModal: (modalName: M, params?: P[M], callback?: () => void) => void
-}github
+}
 ```
 {% endtab %}
 {% endtabs %}

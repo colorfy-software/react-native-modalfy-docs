@@ -59,7 +59,7 @@ type ModalClosingActionName = 'closeModal' | 'closeModals' | 'closeAllModals'
 type ModalClosingActionOrigin = 'default' | 'fling' | 'backdrop'
 type ModalEventCallback = ModalOnAnimateEventCallback | ModalOnCloseEventCallback
 
-type ModalEventListener = { remove: () => boolean }github
+type ModalEventListener = { remove: () => boolean }
 ```
 {% endtab %}
 {% endtabs %}
