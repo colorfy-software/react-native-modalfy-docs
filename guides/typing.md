@@ -1,3 +1,7 @@
+---
+icon: t
+---
+
 # Type checking with TypeScript
 
 There are **6** main interfaces that you'll use throughout your experience with Modalfy:

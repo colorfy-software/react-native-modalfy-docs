@@ -1,3 +1,7 @@
+---
+icon: bookmark
+---
+
 # ModalStackConfig
 
 {% hint style="info" %}

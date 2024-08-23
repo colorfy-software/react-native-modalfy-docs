@@ -1,5 +1,6 @@
 ---
 description: Tuesday, February 15, 2022
+icon: sparkles
 ---
 
 # Unveiling Modalfy v3

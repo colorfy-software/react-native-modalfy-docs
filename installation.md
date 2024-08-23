@@ -1,6 +1,7 @@
 ---
 id: installation
 title: Installation
+icon: cloud-arrow-down
 ---
 
 # Installation

@@ -1,5 +1,6 @@
 ---
 title: Creating a stack
+icon: rectangle-history-circle-plus
 ---
 
 # Creating a stack

@@ -1,3 +1,7 @@
+---
+icon: handshake-simple
+---
+
 # Contributing
 
 If you're here because you want to help improve React Native Modalfy, first of all: thank you, we really appreciate it!

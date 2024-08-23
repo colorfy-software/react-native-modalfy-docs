@@ -1,3 +1,7 @@
+---
+icon: arrow-down-arrow-up
+---
+
 # Triggering a callback
 
 #### [> ModalProp API](../api/types/modalprop.md)

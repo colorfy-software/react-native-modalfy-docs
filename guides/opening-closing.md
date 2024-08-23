@@ -1,3 +1,7 @@
+---
+icon: door-open
+---
+
 # Opening & closing
 
 As soon as our modal stack is set up, we can start using it from wherever we want in the code. Since Modal v2, we have 3 different ways to do so, depending on the situation:&#x20;

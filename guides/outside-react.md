@@ -1,6 +1,10 @@
+---
+icon: js
+---
+
 # Using outside React
 
-#### ****[**> modalfy() API**](../api/modalfy.md)****
+#### [**> modalfy() API**](../api/modalfy.md)
 
 Thanks to the rewrite that led to Modalfy v2, we can now control our modals from _outside_ React for the 1st time!
 

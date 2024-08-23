@@ -2,6 +2,7 @@
 description: >-
   Need help? React Native Modalfy is worked on by colorfy's team. Feel free to
   reach out to us for any inquiry.
+icon: comment-question
 ---
 
 # Help

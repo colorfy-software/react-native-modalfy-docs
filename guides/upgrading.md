@@ -1,3 +1,7 @@
+---
+icon: sparkle
+---
+
 # Upgrading from v2.x
 
 We tried to keep the number of breaking changes as low as possible. As of now, here is the list of the changes we know you'll have to make if you're coming from Modalfy v2.
@@ -14,7 +18,7 @@ As announced in the v2 release, the `shouldAnimateOut` modal option has been dro
 
 v2.1 brought up a new way to drive animations by putting you in full control whenever a modal is being opened and/or closed: [**`animationIn`**](../api/types/modaloptions.md#animationin) & [**`animationOut`**](../api/types/modaloptions.md#animationout).
 
-Since v3, you _**must**_** ** use the new 3rd `callback` argument provided to you. This is required so that [your callbacks can be invoked](triggering-a-callback.md) at the end of the animation(s) you'll define, for instance. Example:
+Since v3, you _**must**_ use the new 3rd `callback` argument provided to you. This is required so that [your callbacks can be invoked](triggering-a-callback.md) at the end of the animation(s) you'll define, for instance. Example:
 
 {% tabs %}
 {% tab title="TypeScript" %}

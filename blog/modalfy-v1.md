@@ -1,5 +1,6 @@
 ---
 description: Friday, May 24, 2019‌
+icon: sparkles
 ---
 
 # Introducing a Modal Citizen

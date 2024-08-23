@@ -1,3 +1,7 @@
+---
+icon: bell
+---
+
 # Subscribing to events
 
 #### [**> ModalComponentProp API**](../api/types/modalcomponentprop.md)

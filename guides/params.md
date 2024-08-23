@@ -1,5 +1,6 @@
 ---
 title: Passing params
+icon: hand-holding-box
 ---
 
 # Passing params

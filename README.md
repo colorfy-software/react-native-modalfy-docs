@@ -1,3 +1,7 @@
+---
+icon: hand-wave
+---
+
 # Getting started
 
 React Native Modalfy concept came from a need we felt at [colorfy](https://colorfy.me). Some of our apps required a very specific use of modals, with sometimes the necessity of displaying and hiding a lot of them, quite often.

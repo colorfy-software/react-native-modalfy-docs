@@ -1,3 +1,7 @@
+---
+icon: bookmark
+---
+
 # ModalComponentWithOptions
 
 {% hint style="info" %}

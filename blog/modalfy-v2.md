@@ -1,5 +1,6 @@
 ---
 description: Wednesday, June 24, 2020
+icon: sparkles
 ---
 
 # Announcing Modalfy v2

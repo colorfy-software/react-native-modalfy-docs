@@ -1,3 +1,7 @@
+---
+icon: bookmark
+---
+
 # Types
 
 {% content-ref url="modalstackconfig.md" %}
