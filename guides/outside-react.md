@@ -1,5 +1,5 @@
 ---
-icon: js
+icon: react
 ---
 
 # Using outside React
