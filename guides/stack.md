@@ -113,7 +113,7 @@ export default App
 {% hint style="info" %}
 There are 3 ways to provide options to a modal:
 
-1. Trough `defaultOptions` in [**`createModalStack()`**](../api/createmodalstack.md)as we just did
+1. Through `defaultOptions` in [**`createModalStack()`**](../api/createmodalstack.md)as we just did
 2. Inside `modalConfig` by providing a [**`modalOptions`**](../api/types/modaloptions.md)object instead of just the component directly
 3. Inside the modal component file itself, via `static modalOptions` (Class) or `MyModalComponent.modalOptions`(Hooks)
 {% endhint %}
