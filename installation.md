@@ -39,7 +39,7 @@ If you're using Expo, on top of [setting up `<GestureHandlerRootView />`](https:
 {% tabs %}
 {% tab title="Bash" %}
 ```bash
-expo install react-native-modalfy react-native-gesture-handler
+npx expo install react-native-modalfy react-native-gesture-handler
 ```
 {% endtab %}
 {% endtabs %}
