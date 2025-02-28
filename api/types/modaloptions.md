@@ -51,6 +51,8 @@ export interface ModalOptions {
   
   position?: 'center' | 'top' | 'bottom'
   
+  stackContainerStyle?: ViewStyle | ((stackOpacity: Animated.Value) => ViewStyle)
+  
   transitionOptions?: ModalTransitionOptions
 }
 
@@ -295,7 +297,7 @@ Vertical positioning of the modal.
 ### `stackContainerStyle`
 
 ```typescript
-stackContainerStyle?: ViewStyle | ((: Animated.Value) => ViewStyle)
+stackContainerStyle?: ViewStyle | ((stackOpacity: Animated.Value) => ViewStyle)
 ```
 
 Styles applied to the `<Animated.View>` directly wrapping the entire modal stack & backdrop.
