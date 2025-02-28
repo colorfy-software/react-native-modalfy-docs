@@ -193,7 +193,7 @@ backBehavior?: 'clear' | 'pop' | 'none'
 
 How you want the modal stack to behave when users press the backdrop, but also when the physical back button is pressed on Android.
 
-**Note:**&#x20;
+**Notes:**&#x20;
 
 * `'clear'` means that you want the whole stack to be cleared, whatever the amount of modals opened.
 * `'pop'` means that you only want the modal at the top of the stack to be removed.
@@ -273,7 +273,7 @@ pointerEventsBehavior?: 'auto' | 'none' | 'current-modal-only' | 'current-modal-
 
 How you want any modal to respond to a touch/click.
 
-**Note:**&#x20;
+**Notes:**&#x20;
 
 * `'auto'` means that you want the default behavior. The modal will catch touch events and propagate them automatically.
 * `'none'` means that you don't want the modal to catch _any_ touch event. Touching/clicking on it will not trigger anything.
@@ -291,6 +291,22 @@ position?: 'center' | 'top' | 'bottom'
 Vertical positioning of the modal.
 
 **Default:**  `'center'`
+
+### `stackContainerStyle`
+
+```typescript
+stackContainerStyle?: ViewStyle | ((: Animated.Value) => ViewStyle)
+```
+
+Styles applied to the `<Animated.View>` directly wrapping the entire modal stack & backdrop.
+
+The styles can be provided as a regular object or as a function (that will receive an `Animated.Value` representing the opacity of the modal stack as sole argument).&#x20;
+
+`stackContainerStyle(animatedOpacityValue)`  wil then need to return a React Native style object containing values (that can use the provided `animatedOpacityValue` to run animation interpolations).
+
+**Note**: the object returned by `stackContainerStyle()` must contain keys that work with `useNativeDriver: true`.
+
+**Default:**  `{}`
 
 ### `transitionOptions`
 
