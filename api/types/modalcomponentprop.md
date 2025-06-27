@@ -300,6 +300,7 @@ const ErrorModal = ({ modal: { closeModal, params, setModalOptions } }) => {
     </View>
   )
 }
+
 export default ErrorModal
 ```
 {% endcode %}
