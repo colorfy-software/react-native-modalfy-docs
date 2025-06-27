@@ -37,11 +37,13 @@ export interface ModalOptions {
   
   backBehavior?: 'clear' | 'pop' | 'none'
   
+  backdropAnimationDuration?: number
+  
   backdropColor?: ViewStyle['backgroundColor']
   
   backdropOpacity?: number
   
-  backdropAnimationDuration?: number
+  backdropPosition?: 'root' | 'belowLatest'
   
   containerStyle?: ViewStyle
   
@@ -203,6 +205,16 @@ How you want the modal stack to behave when users press the backdrop, but also w
 
 **Default:**  `'pop'`
 
+### `backdropAnimationDuration`
+
+```typescript
+backdropAnimationDuration?: number
+```
+
+Number that defines how long the backdrop should take to animate in and out.
+
+**Default:**  `300`
+
 ### `backdropColor`
 
 ```typescript
@@ -223,15 +235,20 @@ Number between `0` and `1` that defines the backdrop opacity.
 
 **Default:**  `0.6`
 
-### `backdropAnimationDuration`
+### `backdropPosition`
 
 ```typescript
-backdropAnimationDuration?: number
+backdropPosition?: 'root' | 'belowLatest'
 ```
 
-Number that defines how long the backdrop should take to animate in and out.
+Where in the stack should the backdrop be displayed.
 
-**Default:**  `300`
+**Notes:**&#x20;
+
+* `'root'` means the backdrop will be displayed below all the opened modals.
+* `'belowLatest'` means the backdrop will only be displayed below the latest opened modal. The other opened modals will be below the backdrop.
+
+**Default:**  `'root'`
 
 ### `containerStyle`
 
