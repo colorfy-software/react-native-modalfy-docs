@@ -15,7 +15,7 @@ icon: bookmark
 {% tabs %}
 {% tab title="React JSX" %}
 {% code title="./App.js" %}
-```jsx
+```tsx
 import React from 'react'
 import { ModalProvider, createModalStack } from 'react-native-modalfy'
 

@@ -86,7 +86,7 @@ Function that allows you to hook a listener to the modal component you're in. Ri
 {% tabs %}
 {% tab title="TypeScript React" %}
 {% code title="./modals/AlertModal.tsx" %}
-```typescript
+```tsx
 import {
   ModalProps,
   ModalEventListener,
@@ -147,7 +147,7 @@ Function that looks inside `params` and returns you the value of the key corresp
 {% tabs %}
 {% tab title="React JSX" %}
 {% code title="./modals/ErrorModal.js" %}
-```javascript
+```tsx
 import React from 'react'
 import { Button, Text, View } from 'react-native'
 
@@ -191,7 +191,7 @@ Optional params you provided when opening the modal you're in.
 {% tabs %}
 {% tab title="React JSX" %}
 {% code title="./modals/ErrorModal.js" %}
-```javascript
+```tsx
 import React from 'react'
 import { Button, Text, View } from 'react-native'
 
@@ -222,7 +222,7 @@ Removes all the listeners connected to the modal component you're in.
 {% tabs %}
 {% tab title="TypeScript React" %}
 {% code title="./modals/AlertModal.tsx" %}
-```typescript
+```tsx
 import React, { useCallback, useEffect, useRef } from 'react'
 import { ModalEventCallback, ModalEventListener } from 'react-native-modalfy'
 
@@ -277,7 +277,7 @@ This is an alternative to the static approach: `MyModal.modalOptions = { ... }`.
 {% tabs %}
 {% tab title="TypeScript React" %}
 {% code title="./modals/AlertModal.tsx" %}
-```typescript
+```tsx
 import React, { useEffect } from 'react'
 import { Button, Text, View } from 'react-native'
 

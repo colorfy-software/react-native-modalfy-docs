@@ -14,7 +14,7 @@ Function that exposes Modalfy's API outside of React's context. The object retur
 
 {% tabs %}
 {% tab title="TypeScript" %}
-```javascript
+```typescript
 const modalfy = <
   P extends ModalfyParamsm,
   M extends keyof P
@@ -55,7 +55,7 @@ const modalfy = <
 {% hint style="info" %}
 If you're using TypeScript and have [your params types](../guides/typing.md#modalprop), you can get some nice autocomplete by utilizing `modalfy()`like this:
 
-```javascript
+```typescript
 import { ModalStackParamsList } from 'App'
 // ...
 const { openModal } = modalfy<ModalStackParamsList>()

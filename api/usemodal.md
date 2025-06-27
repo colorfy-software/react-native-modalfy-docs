@@ -14,7 +14,7 @@ Hooks that exposes Modalfy's API. The object returned by `useModal()`is covered 
 
 {% tabs %}
 {% tab title="TypeScript" %}
-```javascript
+```typescript
 const useModal = <P extends ModalfyParams>(): UsableModalProp<P> => {
   const context: UsableModalProp<P> = React.useContext(ModalContext)
   const { closeModal, closeModals, closeAllModals } = modalfy<P>()
@@ -39,7 +39,7 @@ const useModal = <P extends ModalfyParams>(): UsableModalProp<P> => {
 {% hint style="info" %}
 If you're using TypeScript and have [your params types](../guides/typing.md#modalprop), you can get some nice autocomplete by utilizing`useModal()`like this:
 
-```javascript
+```typescript
 import { ModalStackParamsList } from 'App'
 // ...
 const { openModal } = useModal<ModalStackParamsList>()

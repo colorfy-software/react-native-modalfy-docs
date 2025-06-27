@@ -14,7 +14,7 @@ HOC that provides the `modal` prop to a wrapped Class component. The `modal` pro
 
 {% tabs %}
 {% tab title="TypeScript" %}
-```javascript
+```tsx
 const withModal = <P extends ModalfyParams, Props extends object>(
   Component: React.ComponentClass<Props>,
 ) => {
@@ -49,7 +49,7 @@ const withModal = <P extends ModalfyParams, Props extends object>(
 
 ## API reference
 
-```javascript
+```tsx
 import React, { Component } from 'react'
 import { Button, Text } from 'react-native'
 import { withModal } from 'react-native-modalfy'
