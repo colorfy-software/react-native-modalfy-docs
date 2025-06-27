@@ -45,8 +45,9 @@ interface UsableModalComponentProp<
     paramName: N,
     defaultValue?: D,
   ) => D extends P[M][N] ? P[M][N] : undefined
-  removeAllListeners: () => void
   params?: P[M]
+  removeAllListeners: () => void
+  setModalOptions: (modalOptions: ModalOptions) => void
 }
 
 type ModalListener = (
@@ -68,7 +69,7 @@ type ModalEventListener = { remove: () => boolean }
 {% endtab %}
 {% endtabs %}
 
-{% embed url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L429-L452" %}
+{% @github-files/github-code-block url="https://github.com/colorfy-software/react-native-modalfy/blob/main/src/types.ts#L429-L452" %}
 
 ## API reference
 
@@ -177,6 +178,37 @@ export default ErrorModal
 {% endtab %}
 {% endtabs %}
 
+### `params`&#x20;
+
+```javascript
+params?: P[M]
+```
+
+Optional params you provided when opening the modal you're in.
+
+**Example:**
+
+{% tabs %}
+{% tab title="React JSX" %}
+{% code title="./modals/ErrorModal.js" %}
+```javascript
+import React from 'react'
+import { Button, Text, View } from 'react-native'
+
+const ErrorModal = ({ modal: { closeModal, params } }) => (
+  <View>
+    <Text>{params?.title}</Text>
+    <Text>{params?.message}</Text>
+    <Button title="Close" onPress={closeModal} />
+  </View>
+)
+
+export default ErrorModal
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
+
 ### `removeAllListeners`&#x20;
 
 ```javascript
@@ -228,33 +260,50 @@ export default AlertModal
 {% endtab %}
 {% endtabs %}
 
-### `params`&#x20;
+### `setModalOptions`&#x20;
 
 ```javascript
-params?: P[M]
+setModalOptions: (modalOptions: ModalOptions) => void
 ```
 
-Optional params you provided when opening the modal you're in.
+Allows you to dynamically change the modal options of to the modal component you're in.
 
-**Example:**
+This is an alternative to the static approach: `MyModal.modalOptions = { ... }`.
+
+[You can learn more about it here](https://colorfy-software.gitbook.io/react-native-modalfy/guides/typing#modalcomponentwithoptions).
+
+**Example:**&#x20;
 
 {% tabs %}
-{% tab title="React JSX" %}
-{% code title="./modals/ErrorModal.js" %}
-```javascript
-import React from 'react'
+{% tab title="TypeScript React" %}
+{% code title="./modals/AlertModal.tsx" %}
+```typescript
+import React, { useEffect } from 'react'
 import { Button, Text, View } from 'react-native'
 
-const ErrorModal = ({ modal: { closeModal, params } }) => (
-  <View>
-    <Text>{params?.title}</Text>
-    <Text>{params?.message}</Text>
-    <Button onPress={closeModal} title="Close" />
-  </View>
-)
+const ErrorModal = ({ modal: { closeModal, params, setModalOptions } }) => {
+  useEffect(() => {
+    if (params.type === 'important') {
+      setModalOptions({
+        position: 'center',
+        disableFlingGesture: true,
+        backdropColor: '#FF000040',
+      })
+    }
+  }, [params.type, setModalOptions])
 
+  return (
+    <View>
+      <Text>{params?.title}</Text>
+      <Text>{params?.message}</Text>
+      <Button title="Close" onPress={closeModal} />
+    </View>
+  )
+}
 export default ErrorModal
 ```
 {% endcode %}
+
+
 {% endtab %}
 {% endtabs %}
